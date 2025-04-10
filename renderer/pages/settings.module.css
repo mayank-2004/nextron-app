@@ -1,6 +1,5 @@
 .settings-section{
     display: grid;
-    /* grid-template-columns: repeat(3, 1fr); */
 }
 .set-head{
     text-align: center;
@@ -44,7 +43,6 @@
 
 .form-group input{
     color: black;
-    /* font-weight: bold; */
     width: 200px;
     padding: 8px;
     border: 1px solid #8e7d7d;
@@ -58,6 +56,8 @@
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 15px;
+    font-weight: 600;
+    margin-left: 0 auto;
     margin-top: 15px;
 }
 

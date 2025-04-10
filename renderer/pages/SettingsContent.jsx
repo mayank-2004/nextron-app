@@ -71,9 +71,9 @@ const SettingsContent = () => {
                             </label>
                             <input onChange={InputChange} value={user.send} type="text" name='send' placeholder='enter topic to send' required />
                         </div>
-                    </div>
-                    <div>
-                        <button className={styles.btn} type='submit' name='button'>Save</button>
+                        <div>
+                            <button className={styles.btn} type='submit' name='button'>Save</button>
+                        </div>
                     </div>
                 </form>
             </div>

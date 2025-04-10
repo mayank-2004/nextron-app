@@ -11,7 +11,7 @@ const HomeContent = () => {
 
     const handlePublish = () => {
         if (sendMessage) {
-            console.log("Sending message:", sendMessage, "to topic:", sendTopic);
+            console.log("Sending message:", sendMessage, "from topic:", sendTopic);
             onPublish(sendMessage);
             setSendMessage('');
         }
