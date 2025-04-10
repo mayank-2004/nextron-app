@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "name": "my-nextron-app",
+  "description": "My application description",
+  "version": "1.0.0",
+  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nextron",
+    "build": "nextron build",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "electron-serve": "^1.3.0",
+    "electron-store": "^8.2.0",
+    "express": "^5.1.0",
+    "framer-motion": "^12.6.3",
+    "mqtt": "^5.10.4",
+    "react": "^18.2.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "electron": "^34.0.0",
+    "electron-builder": "^24.13.3",
+    "next": "^14.2.4",
+    "nextron": "^9.5.0"
+  },
+  "build": {
+    "appId": "myapp",
+    "productName": "MyNextronApp",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "app/**/*",
+      ".next/**/*",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "app/background.js"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
