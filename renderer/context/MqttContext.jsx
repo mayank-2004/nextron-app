@@ -40,7 +40,6 @@ export const MqttProvider = ({ children }) => {
   };
 
   const onPublish = async (message) => {
-    // Only run on client-side
     if (!isClient) return;
     
     if (!sendTopic) {
@@ -61,7 +60,6 @@ export const MqttProvider = ({ children }) => {
     }
   };
 
-  // Fetch messages from the server every 10 seconds
   useEffect(() => {
     if (!isClient) return;
     

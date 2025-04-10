@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styles from "./home.module.css";
+import styles from "./homecontent.module.css";
 import { MqttContext } from '../context/MqttContext';
 
 const HomeContent = () => {

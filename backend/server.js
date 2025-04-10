@@ -1,7 +1,3 @@
-// const express = require("express");
-// const mqtt = require("mqtt");
-// const cors = require("cors");
-
 import express from "express";
 import mqtt from "mqtt";
 import cors from "cors";

@@ -5,6 +5,7 @@ import { IoSettings } from "react-icons/io5";
 import { useState } from "react";
 import { MqttProvider } from "../context/MqttContext";
 import dynamic from 'next/dynamic';
+import styles from "./home.module.css";
 
 export default function Page() {
   const [activePage, setActivePage] = useState("");
@@ -34,31 +35,31 @@ export default function Page() {
 
   return (
     <MqttProvider>
-      <div className="main-container">
-        <button className="btn btn-sidebar" onClick={handleSideBar}>
+      <div className={styles["main-container"]}>
+        <button className={`${styles.btn} ${styles['btn-sidebar']}`} onClick={handleSideBar}>
           <FaAlignJustify size={24} />
         </button>
 
         <AnimatePresence>
           {sideBar && (
             <motion.div
-              className="sidebar"
+              className={styles.sidebar}
               variants={sidebarVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
             >
-              <button className="btn btn-homebar" onClick={() => handleNavigation("HomeContent")}>
+              <button className={`${styles.btn} ${styles["btn-homebar"]}`} onClick={() => handleNavigation("HomeContent")}>
                 <FaHouseChimney size={24} />
               </button>
-              <button className="btn btn-settingbar" onClick={() => handleNavigation("SettingsContent")}>
+              <button className={`${styles.btn} ${styles["btn-settingbar"]}`} onClick={() => handleNavigation("SettingsContent")}>
                 <IoSettings size={24} />
               </button>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <div className="content-container">
+        <div className={styles["content-container"]}>
           <AnimatePresence mode="wait">
             {activePage === "HomeContent" && (
               <motion.div key="HomeContent" variants={pageVariants} initial="initial" animate="animate" exit="exit">

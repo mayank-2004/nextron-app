@@ -1,0 +1,125 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 40px 0;
+    border-radius: 10px;
+    background-color: rgb(164, 164, 246);
+}
+
+.home-container {
+    background-color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 15px;
+    height: 150px;
+}
+
+.home-form {
+    padding: 0 20px;
+}
+
+.home-form .set-h3 {
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
+
+.home-form input {
+    margin-top: 20px;
+    padding: 6px 12px;
+    border: 1px solid #8e7d7d;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.home-form button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgb(139, 43, 139);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 18px;
+    font-size: 15px;
+}
+
+.chat-box {
+    position: relative;
+    width: 90%;
+    height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    background: url(../public/images/wallppr.jpg) repeat-y;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.75;
+}
+
+.chat-message {
+    max-width: 70%;
+    padding: 6px 10px;
+    margin: 5px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.sent {
+    align-self: flex-end;
+    margin-left: auto;
+    color: black;
+    font-weight: 700;
+    background-color: white;
+    text-align: right;
+}
+
+.received {
+    align-self: flex-start;
+    margin-right: auto;
+    background-color: #19d138;
+    color: black;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+
+.home-area textarea {
+    width: 90%;
+    height: 250px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 3px 15px;
+    outline: none;
+}
+
+.home-area .msg {
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+        "GRAD" 0;
+}
+
+.home-area h1 {
+    margin-bottom: 10px;
+}
