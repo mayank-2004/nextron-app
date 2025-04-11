@@ -49,6 +49,6 @@
 
 .content-container {
   flex: 1;
-  margin-left: 80px; /* Prevent content shift when sidebar opens */
+  margin-left: 80px; 
   padding: 20px;
 }

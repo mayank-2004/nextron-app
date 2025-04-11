@@ -18,13 +18,13 @@ const HomeContent = () => {
     };
 
     return <>
-        <h1 style={{ fontSize: "18px", color: "white" }}>Home Page</h1>
+        <h1 style={{ color: "black", textAlign: "center", fontWeight: "800", fontFamily: "sans-serif" }}>Home Page</h1>
         <div className={styles['chat-container']}>
             <div className={styles['home-area']}>
                 <h1 className={styles.msg}>Topic: {sendTopic || "Not Set"}</h1>
                 <div className={styles['chat-box']}>
                     {messages && messages.length > 0 ? 
-                    [...messages].reverse().map((msg, index) => (
+                    [...messages].map((msg, index) => (
                         <div key={index} className={`${styles['chat-message']} ${msg.type === 'sent' ? styles.sent : styles.received}`}>
                             {msg.text}
                         </div>
@@ -38,7 +38,7 @@ const HomeContent = () => {
                     <h3 className={styles['set-h3']}>Publisher</h3>
                     <input type="text" name="text" placeholder='enter text to send' value={sendMessage}
                         onChange={(e) => setSendMessage(e.target.value)} />
-                    <button onClick={handlePublish} type='button' className={styles.btn}>send</button>
+                    <button onClick={handlePublish} type='button' className={styles.btn}>Send</button>
                 </div>
             </div>
         </div>

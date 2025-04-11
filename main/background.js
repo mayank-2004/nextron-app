@@ -26,8 +26,8 @@ if (isProd) {
   });
 
   const mainWindow = createWindow('main', {
-    width: 800,
-    height: 700,
+    width: 900,
+    height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },

@@ -36,37 +36,37 @@ const SettingsContent = () => {
                 <form onSubmit={handleSubmit} className={styles.container}>
                     <div className={styles.form}>
                         <div className={styles['form-group']}>
-                            <label htmlFor="">
+                            <label className={styles['form-label']}>
                                 MQTTIP:
                             </label>
                             <input onChange={InputChange} value={user.mqttip} type="decimal" name='mqttip' placeholder='enter your id' required />
                         </div>
                         <div className={styles['form-group']}>
-                            <label htmlFor="">
+                            <label className={styles['form-label']}>
                                 PORT:
                             </label>
                             <input onChange={InputChange} value={user.port} type="number" name='port' placeholder='enter port' required />
                         </div>
                         <div className={styles['form-group']}>
-                            <label htmlFor="">
+                            <label className={styles['form-label']}>
                                 username:
                             </label>
                             <input onChange={InputChange} value={user.username} type="text" name='username' placeholder='enter username' />
                         </div>
                         <div className={styles['form-group']}>
-                            <label htmlFor="">
+                            <label className={styles['form-label']}>
                                 password:
                             </label>
                             <input onChange={InputChange} value={user.password} type="password" name='password' placeholder='enter password' />
                         </div>
                         <div className={styles['form-group']}>
-                            <label htmlFor="">
+                            <label className={styles['form-label']}>
                                 Receive Topic:
                             </label>
                             <input onChange={InputChange} value={user.receive} type="text" name='receive' placeholder='enter received topic' required />
                         </div>
                         <div className={styles['form-group']}>
-                            <label htmlFor="">
+                            <label className={styles['form-label']}>
                                 Send Topic:
                             </label>
                             <input onChange={InputChange} value={user.send} type="text" name='send' placeholder='enter topic to send' required />
