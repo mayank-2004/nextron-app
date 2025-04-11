@@ -4,12 +4,13 @@
     padding: 50px 0;
     border-radius: 10px;
     max-width: 600px;
-    margin: auto;
+    margin: 80px auto;
 }
 .set-head{
     text-align: center;
     font-weight: 800;
     font-family: sans-serif;
+    margin-top: -20px;
 }
 
 .container{

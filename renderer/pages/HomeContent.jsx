@@ -19,7 +19,7 @@ const HomeContent = () => {
 
     return <>
         <div className={styles['home-section']}>
-            <h1 style={{ color: "black", textAlign: "center", fontWeight: "800", fontFamily: "sans-serif" }}>Home Page</h1>
+            <h1 style={{ color: "black", textAlign: "center", fontWeight: "800", fontFamily: "sans-serif", marginTop: "-20px" }}>Home Page</h1>
             <div className={styles['chat-container']}>
                 <div className={styles['home-area']}>
                     <h1 className={styles.msg}>Topic: {sendTopic || "Not Set"}</h1>
