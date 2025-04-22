@@ -5,6 +5,34 @@ import cors from "cors";
 let messages = [];
 let mqttClient = null;
 
+export function connectMqtt(brokerUrl, options = {}) {
+  const defaultOptions = {
+    username: "Swajahome",
+    password: "12345678",
+    reconnectPeriod: 5000,
+  };
+
+  const mqttOptions = { ...defaultOptions, ...options };
+
+  mqttClient = mqtt.connect(brokerUrl, mqttOptions);
+
+  mqttClient.on("connect", () => {
+    console.log(`Connected to MQTT Broker at ${brokerUrl}`);
+  });
+
+  mqttClient.on("error", (err) => {
+    console.error("MQTT connection Error:", err);
+  });
+
+  mqttClient.on("message", (topic, message) => {
+    const receivedMessage = { topic, text: message.toString(), type: "received" };
+    messages.push(receivedMessage);
+    console.log(`Message received from ${topic}: ${message.toString()}`);
+  });
+
+  return mqttClient;
+}
+
 export function startExpressServer(port = 5000) {
   const app = express();
 
@@ -53,38 +81,22 @@ export function startExpressServer(port = 5000) {
     res.json(messages);
   });
 
+  app.get("/temperature-data", async(req, res) => {
+    try {
+      const {initializeDatabase, getSensorData} = await import("./database.js");
+      initializeDatabase();
+      const data = await getSensorData();
+      res.json(data);
+    } catch (error) {
+      console.error("Error fetching temperature data:", error);
+      res.status(500).json({error: "failed to fetch temperature data"});
+    }
+  });
+
   const server = app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
   });
   return { app, server };
-}
-
-export function connectMqtt(brokerUrl, options = {}) {
-  const defaultOptions = {
-    username: "Swajahome",
-    password: "12345678",
-    reconnectPeriod: 5000,
-  };
-
-  const mqttOptions = { ...defaultOptions, ...options };
-
-  mqttClient = mqtt.connect(brokerUrl, mqttOptions);
-
-  mqttClient.on("connect", () => {
-    console.log(`Connected to MQTT Broker at ${brokerUrl}`);
-  });
-
-  mqttClient.on("error", (err) => {
-    console.error("MQTT connection Error:", err);
-  });
-
-  mqttClient.on("message", (topic, message) => {
-    const receivedMessage = { topic, text: message.toString(), type: "received" };
-    messages.push(receivedMessage);
-    console.log(`Message received from ${topic}: ${message.toString()}`);
-  });
-
-  return mqttClient;
 }
 
 export function publishMessage(topic, message) {

@@ -4,7 +4,6 @@ import styles from "./settings.module.css"
 import { MqttContext } from '../context/MqttContext';
 
 const SettingsContent = () => {
-    // Use default function to prevent errors during static generation
     const { connectMqtt = () => { } } =
         typeof window !== 'undefined' ? useContext(MqttContext) : {};
 

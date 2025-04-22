@@ -2,7 +2,7 @@ import path from 'path'
 import { app, ipcMain } from 'electron'
 import serve from 'electron-serve'
 import { createWindow } from './helpers'
-import { startExpressServer, connectMqtt, cleanupMqtt } from '../backend/server'
+import { startExpressServer, connectMqtt, cleanupMqtt } from '../backend/server.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -15,10 +15,8 @@ if (isProd) {
 (async () => {
   await app.whenReady()
 
-  // start express server
-  const {server} = startExpressServer(5000);
+   const {server} = startExpressServer(5000);
 
-  // connect to MQTT broker
   const MQTT_BROKER = "mqtt://192.168.1.200:1883";
   connectMqtt(MQTT_BROKER, {
     username: "Swajahome",
@@ -31,7 +29,7 @@ if (isProd) {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
-  })
+  });
 
   if (isProd) {
     await mainWindow.loadURL('app://./home')

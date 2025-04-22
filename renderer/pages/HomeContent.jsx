@@ -1,13 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from "./homecontent.module.css";
 import { MqttContext } from '../context/MqttContext';
 
 const HomeContent = () => {
-    // Use default values to prevent errors during static generation
     const { onPublish = () => { }, messages = [], sendTopic = '' } =
         typeof window !== 'undefined' ? useContext(MqttContext) : {};
 
     const [sendMessage, setSendMessage] = useState('');
+    const chatBoxRef = useRef(null);
+
+    useEffect(() => {
+        if(chatBoxRef.current) {
+            chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+        }
+    },[messages]);
 
     const handlePublish = () => {
         if (sendMessage) {
@@ -23,9 +29,10 @@ const HomeContent = () => {
             <div className={styles['chat-container']}>
                 <div className={styles['home-area']}>
                     <h1 className={styles.msg}>Topic: {sendTopic || "Not Set"}</h1>
-                    <div className={styles['chat-box']}>
-                        {messages && messages.length > 0 ?
-                            [...messages].map((msg, index) => (
+                    <div className={styles['chat-box']} ref={chatBoxRef}>
+                        {Array.isArray(messages) && messages.length > 0 ?
+                            // [...messages].map((msg, index) => (
+                            messages.map((msg, index) => (
                                 <div key={index} className={`${styles['chat-message']} ${msg.type === 'sent' ? styles.sent : styles.received}`}>
                                     {msg.text}
                                 </div>

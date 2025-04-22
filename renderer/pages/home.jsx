@@ -1,6 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaAlignJustify, FaHouseChimney } from "react-icons/fa6";
+import { LiaTemperatureHighSolid } from "react-icons/lia";
 import { IoSettings } from "react-icons/io5";
 import { useState } from "react";
 import { MqttProvider } from "../context/MqttContext";
@@ -13,6 +14,7 @@ export default function Page() {
 
   const HomeContent = dynamic(() => import('./HomeContent'), { ssr: false });
   const SettingsContent = dynamic(() => import('./SettingsContent'), { ssr: false });
+  const TemperatureContent = dynamic(() => import('./TemperatureContent'), {ssr: false});
 
   const handleNavigation = (page) => {
     setActivePage(page);
@@ -37,7 +39,7 @@ export default function Page() {
     <MqttProvider>
       <div className={styles["main-container"]}>
         <button className={`${styles.btn} ${styles['btn-sidebar']}`} onClick={handleSideBar}>
-          <FaAlignJustify size={24} />
+          <FaAlignJustify size={30} />
         </button>
 
         <AnimatePresence>
@@ -50,10 +52,13 @@ export default function Page() {
               exit="hidden"
             >
               <button className={`${styles.btn} ${styles["btn-homebar"]}`} onClick={() => handleNavigation("HomeContent")}>
-                <FaHouseChimney size={24} />
+                <FaHouseChimney size={30} />
               </button>
               <button className={`${styles.btn} ${styles["btn-settingbar"]}`} onClick={() => handleNavigation("SettingsContent")}>
-                <IoSettings size={24} />
+                <IoSettings size={30} />
+              </button>
+              <button className={`${styles.btn} ${styles["btn-temperaturebar"]}`} onClick={() => handleNavigation("TemperatureContent")}>
+              <LiaTemperatureHighSolid size={30} />
               </button>
             </motion.div>
           )}
@@ -69,6 +74,11 @@ export default function Page() {
             {activePage === "SettingsContent" && (
               <motion.div key="SettingsContent" variants={pageVariants} initial="initial" animate="animate" exit="exit">
                 <SettingsContent />
+              </motion.div>
+            )}
+            {activePage === "TemperatureContent" && (
+              <motion.div key="TemperatureContent" variants={pageVariants} initial="initial" animate="animate" exit="exit">
+                <TemperatureContent />
               </motion.div>
             )}
           </AnimatePresence>
