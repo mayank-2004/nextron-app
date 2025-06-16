@@ -3,6 +3,7 @@ import { app, ipcMain } from 'electron'
 import serve from 'electron-serve'
 import { createWindow } from './helpers'
 import { startExpressServer, connectMqtt, cleanupMqtt } from '../backend/server.js'
+import { getSensorData, getSensorData1 } from '../backend/database.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -38,6 +39,32 @@ if (isProd) {
     await mainWindow.loadURL(`http://localhost:${port}/home`)
     mainWindow.webContents.openDevTools()
   }
+
+  ipcMain.handle('get-data', async () => {
+    try {
+      console.log('Fetching data from database...');
+      const data = await getSensorData();
+      console.log('Data fetched from database:', data);
+      console.log(Array.isArray(data), data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return [];
+    }
+  });
+
+  ipcMain.handle('get-data1', async () => {
+    try {
+      console.log('Fetching data1 from database...');
+      const data = await getSensorData1();
+      console.log('Data1 fetched from database:', data);
+      console.log(Array.isArray(data), data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching data1:', error);
+      return [];
+    }
+  });
 
   app.on('before-quit', () => {
     cleanupMqtt();

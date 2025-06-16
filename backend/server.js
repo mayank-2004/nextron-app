@@ -81,19 +81,7 @@ export function startExpressServer(port = 5000) {
     res.json(messages);
   });
 
-  app.get("/temperature-data", async(req, res) => {
-    try {
-      const {initializeDatabase, getSensorData} = await import("./database.js");
-      initializeDatabase();
-      const data = await getSensorData();
-      res.json(data);
-    } catch (error) {
-      console.error("Error fetching temperature data:", error);
-      res.status(500).json({error: "failed to fetch temperature data"});
-    }
-  });
-
-  const server = app.listen(port, () => {
+  const server = app.listen(port, async () => {
     console.log(`Server running on http://localhost:${port}`);
   });
   return { app, server };

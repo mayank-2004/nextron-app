@@ -15,6 +15,7 @@ export default function Page() {
   const HomeContent = dynamic(() => import('./HomeContent'), { ssr: false });
   const SettingsContent = dynamic(() => import('./SettingsContent'), { ssr: false });
   const TemperatureContent = dynamic(() => import('./TemperatureContent'), {ssr: false});
+  const SvgViewer = dynamic(() => import('./SvgViewer'), {ssr: false});
 
   const handleNavigation = (page) => {
     setActivePage(page);
@@ -60,6 +61,9 @@ export default function Page() {
               <button className={`${styles.btn} ${styles["btn-temperaturebar"]}`} onClick={() => handleNavigation("TemperatureContent")}>
               <LiaTemperatureHighSolid size={30} />
               </button>
+              <button className={`${styles.btn} ${styles["btn-temperaturebar"]}`} onClick={() => handleNavigation("SvgViewer")}>
+              <LiaTemperatureHighSolid size={30} />
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
@@ -79,6 +83,11 @@ export default function Page() {
             {activePage === "TemperatureContent" && (
               <motion.div key="TemperatureContent" variants={pageVariants} initial="initial" animate="animate" exit="exit">
                 <TemperatureContent />
+              </motion.div>
+            )}
+            {activePage === "SvgViewer" && (
+              <motion.div key="SvgViewer" variants={pageVariants} initial="initial" animate="animate" exit="exit">
+                <SvgViewer />
               </motion.div>
             )}
           </AnimatePresence>
